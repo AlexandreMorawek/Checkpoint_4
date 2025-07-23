@@ -32,7 +32,7 @@
   font-weight: bold;
   color: white;
   animation: neonPulse 1.5s infinite alternate;
-  padding: 0 2rem;
+  padding: 0 4rem;
 }
 
 .siteName:hover {

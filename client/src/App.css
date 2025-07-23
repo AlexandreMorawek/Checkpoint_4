@@ -5,6 +5,14 @@
 }
 
 body {
-  background: radial-gradient(circle, #8b0000 0%, #000000 60%, #000000 100%);
+  background: radial-gradient(
+    circle at center,
+    #ff4d4d 0%,
+    #8b0000 30%,
+    #200020 80%,
+    #200020 100%
+  );
   color: white;
+  min-height: 100vh;
+  background-attachment: fixed;
 }

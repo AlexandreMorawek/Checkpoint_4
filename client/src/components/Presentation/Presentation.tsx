@@ -3,7 +3,9 @@ import "./Presentation.css";
 function PresentationGlobale() {
   return (
     <section className="presentation-section global-presentation">
-      <h2 className="section-title">Bienvenue sur notre Blog Musical</h2>
+      <h2 className="section-title">
+        Bienvenue sur notre Blog Musical Music Start !
+      </h2>
       <p className="section-text">
         Plongez dans l'univers vibrant de la musique. Notre blog est dédié aux
         passionnés, offrant des articles captivants sur tous les genres.
