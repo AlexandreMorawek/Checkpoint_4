@@ -71,13 +71,17 @@ function Articles() {
       ) : (
         <div className="articles-list">
           {articles.map((article) => (
-            <div key={article.id} className="article-card">
+            <NavLink
+              to={`/articles/${article.id}`}
+              key={article.id}
+              className="article-card"
+            >
               <h2 className="article-card-title">{article.title}</h2>
               <p className="article-card-content">{article.content}</p>
               <p className="article-card-meta">
                 Publié le: {new Date(article.created_at).toLocaleDateString()}
               </p>
-            </div>
+            </NavLink>
           ))}
         </div>
       )}

@@ -10,6 +10,7 @@ const router = express.Router();
 import articleAction from "./modules/article/articleAction";
 
 router.get("/api/articles", articleAction.browse);
+router.get("/api/article/:id", articleAction.read);
 router.post("/api/articles", articleAction.add);
 
 import categoryAction from "./modules/category/categoryAction";
