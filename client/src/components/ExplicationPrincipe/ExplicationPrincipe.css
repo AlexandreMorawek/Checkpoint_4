@@ -1,0 +1,76 @@
+.presentation-section {
+  padding: 2rem;
+  margin: 2rem auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+  max-width: 1000px;
+}
+
+.section-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.section-text {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.principle-explanation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.text-content {
+  flex: 1;
+  text-align: center;
+}
+
+.image-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (min-width: 768px) {
+  .presentation-section {
+    padding: 3rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .section-text {
+    font-size: 1.25rem;
+  }
+
+  .principle-explanation {
+    flex-direction: row;
+  }
+
+  .text-content {
+    text-align: left;
+  }
+
+  .section-image {
+    max-width: 400px;
+  }
+}
