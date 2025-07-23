@@ -8,6 +8,18 @@ const browse: RequestHandler = async (req, res) => {
   res.json(articles);
 };
 
+const read: RequestHandler = async (req, res) => {
+  const articleId = Number(req.params.id);
+
+  const article = await articleRepository.read(articleId);
+
+  if (article != null) {
+    res.json(article);
+  } else {
+    res.sendStatus(404);
+  }
+};
+
 const add: RequestHandler = async (req, res, next) => {
   try {
     const { title, content, category_id } = req.body;
@@ -26,4 +38,4 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, add };
+export default { browse, read, add };

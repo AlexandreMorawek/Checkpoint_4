@@ -15,6 +15,14 @@ class ArticleRepository {
     return rows as Article[];
   }
 
+  async read(id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM article WHERE id = ?",
+      [id],
+    );
+    return rows[0] as Article;
+  }
+
   async create(article: Omit<Article, "id">) {
     const [result] = await databaseClient.query<Result>(
       "INSERT INTO article (title, content, category_id) VALUES (?, ?, ?)",
