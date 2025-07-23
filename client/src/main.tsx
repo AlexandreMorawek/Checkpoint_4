@@ -7,7 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 
 // Import the main app component
 import App from "./App";
-import Articles from "./pages/Articles";
+import ArticlesPage from "./pages/ArticlesPage";
 import HomePage from "./pages/HomePage";
 
 // Import additional components for new routes
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/articles",
-        element: <Articles />,
+        element: <ArticlesPage />,
       },
     ],
   },
