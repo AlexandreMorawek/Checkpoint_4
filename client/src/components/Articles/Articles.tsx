@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { NavLink } from "react-router";
 import "./Articles.css";
 
@@ -15,30 +15,57 @@ function Articles() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/articles`,
-        );
-        if (!response.ok) {
-          throw new Error(`Erreur HTTP: ${response.status}`);
-        }
-        const data: Article[] = await response.json();
-        setArticles(data);
-      } catch (err) {
-        console.error("Erreur lors de la récupération des articles:", err);
-        setError(
-          "Impossible de charger les articles. Veuillez réessayer plus tard.",
-        );
-      } finally {
-        setLoading(false);
+  const fetchArticles = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/articles`,
+      );
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP: ${response.status}`);
       }
-    };
-
-    fetchArticles();
+      const data: Article[] = await response.json();
+      setArticles(data);
+    } catch (err) {
+      console.error("Erreur lors de la récupération des articles:", err);
+      setError(
+        "Impossible de charger les articles. Veuillez réessayer plus tard.",
+      );
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+  useEffect(() => {
+    fetchArticles();
+  }, [fetchArticles]);
+
+  const handleDeleteArticle = async (articleId: number) => {
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer cet article ?")) {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/articles/${articleId}`,
+          {
+            method: "DELETE",
+          },
+        );
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error(
+            "Erreur lors de la suppression de l'article:",
+            errorText,
+          );
+          throw new Error(`Échec de la suppression: ${response.status}`);
+        }
+
+        fetchArticles();
+      } catch (err) {
+        console.error("Erreur de suppression:", err);
+        alert(`Erreur lors de la suppression de l'article`);
+      }
+    }
+  };
 
   if (loading) {
     return (
@@ -71,17 +98,30 @@ function Articles() {
       ) : (
         <div className="articles-list">
           {articles.map((article) => (
-            <NavLink
-              to={`/articles/${article.id}`}
-              key={article.id}
-              className="article-card"
-            >
-              <h2 className="article-card-title">{article.title}</h2>
-              <p className="article-card-content">{article.content}</p>
-              <p className="article-card-meta">
-                Publié le: {new Date(article.created_at).toLocaleDateString()}
-              </p>
-            </NavLink>
+            <div key={article.id} className="article-card-wrapper">
+              {" "}
+              <NavLink
+                to={`/articles/${article.id}`}
+                className="article-card-link"
+              >
+                <div className="article-card-content-area">
+                  {" "}
+                  <h2 className="article-card-title">{article.title}</h2>
+                  <p className="article-card-content">{article.content}</p>
+                  <p className="article-card-meta">
+                    Publié le:{" "}
+                    {new Date(article.created_at).toLocaleDateString()}
+                  </p>
+                </div>
+              </NavLink>
+              <button
+                type="button"
+                className="delete-article-button"
+                onClick={() => handleDeleteArticle(article.id)}
+              >
+                Supprimer
+              </button>
+            </div>
           ))}
         </div>
       )}
