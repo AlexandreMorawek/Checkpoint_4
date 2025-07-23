@@ -1,21 +1,20 @@
-create table user (
-  id int unsigned primary key auto_increment not null,
-  email varchar(255) not null unique,
-  password varchar(255) not null
+CREATE TABLE article (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  content TEXT,
+  category_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-create table item (
-  id int unsigned primary key auto_increment not null,
-  title varchar(255) not null,
-  user_id int unsigned not null,
-  foreign key(user_id) references user(id)
+CREATE TABLE categories (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  name VARCHAR(255) NOT NULL
 );
 
-insert into user(id, email, password)
-values
-  (1, "jdoe@mail.com", "123456");
+INSERT INTO categories(id, name)
+VALUES
+(1, "Rock");
 
-insert into item(id, title, user_id)
-values
-  (1, "Stuff", 1),
-  (2, "Doodads", 1);
+INSERT INTO article(id, title, content, category_id)
+VALUES
+(1, "Concert du jour", "Le 11 juillet dernier, Linkin Park a enflammé le Stade de France lors d’un concert mémorable. Devant des dizaines de milliers de fans, le groupe a livré une performance puissante, mêlant classiques intemporels et titres récents. L’émotion était palpable, surtout lors des hommages à Chester Bennington, repris en chœur par le public. Une soirée chargée d’énergie, de nostalgie et d’unité, marquant le grand retour du groupe sur la scène française. Un moment inoubliable.", 1)
