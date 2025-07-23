@@ -10,6 +10,11 @@ const router = express.Router();
 import articleAction from "./modules/article/articleAction";
 
 router.get("/api/articles", articleAction.browse);
+router.post("/api/articles", articleAction.add);
+
+import categoryAction from "./modules/category/categoryAction";
+
+router.get("/api/categories", categoryAction.browse);
 
 /* ************************************************************************* */
 

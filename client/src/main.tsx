@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 
 // Import the main app component
 import App from "./App";
+import AddArticlePage from "./pages/AddArticlePage/AddArticlePage";
 import ArticlesPage from "./pages/ArticlesPage";
 import HomePage from "./pages/HomePage";
 
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/articles",
         element: <ArticlesPage />,
+      },
+      {
+        path: "/add-article",
+        element: <AddArticlePage />,
       },
     ],
   },

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router";
 import "./Articles.css";
 
 type Article = {
@@ -60,6 +61,9 @@ function Articles() {
   return (
     <div className="articles-container">
       <h1 className="articles-title">Nos Derniers Articles</h1>
+      <NavLink to="/add-article" className="add-article-button">
+        Ajouter un article
+      </NavLink>
       {articles.length === 0 ? (
         <p className="no-articles-message">
           Aucun article n'est disponible pour le moment.
