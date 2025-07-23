@@ -8,4 +8,22 @@ const browse: RequestHandler = async (req, res) => {
   res.json(articles);
 };
 
-export default { browse };
+const add: RequestHandler = async (req, res, next) => {
+  try {
+    const { title, content, category_id } = req.body;
+
+    const newArticle = {
+      title,
+      content,
+      category_id,
+    };
+
+    const insertId = await articleRepository.create(newArticle);
+
+    res.status(201).json({ insertId, message: "Article crée avec succés" });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browse, add };

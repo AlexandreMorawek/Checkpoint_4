@@ -13,6 +13,32 @@
   margin-bottom: 2rem;
 }
 
+.add-article-button {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 2rem auto;
+  padding: 1rem 2rem;
+  background-color: #ff4d4d;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s
+    ease;
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.add-article-button:hover {
+  background-color: #ff6666;
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(255, 77, 77, 0.8);
+}
+
 .no-articles-message,
 .error-message {
   text-align: center;
@@ -22,7 +48,8 @@
 }
 
 .articles-list {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }

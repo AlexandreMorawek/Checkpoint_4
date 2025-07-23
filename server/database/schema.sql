@@ -13,7 +13,11 @@ CREATE TABLE categories (
 
 INSERT INTO categories(id, name)
 VALUES
-(1, "Rock");
+(1, "Rock"),
+(2, "Electro"),
+(3, "Jazz"),
+(4, "Rap/Hip-Hop"),
+(5, "Pop");
 
 INSERT INTO article(id, title, content, category_id)
 VALUES
