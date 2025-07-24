@@ -13,10 +13,20 @@ function NavBar() {
       <nav>
         <ul className="navLinks">
           <li>
-            <NavLink to="/">Accueil</NavLink>
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Accueil
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/articles">Articles</NavLink>
+            <NavLink
+              to="/articles"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Articles
+            </NavLink>
           </li>
         </ul>
       </nav>
