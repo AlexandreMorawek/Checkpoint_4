@@ -12,6 +12,7 @@ import EditArticle from "./components/EditArticle/EditArticle";
 import AddArticlePage from "./pages/AddArticlePage/AddArticlePage";
 import ArticlesPage from "./pages/ArticlesPage";
 import HomePage from "./pages/HomePage";
+import Page404 from "./pages/Page404/Page404";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/edit-article/:id",
         element: <EditArticle />,
+      },
+      {
+        path: "*",
+        element: <Page404 />,
       },
     ],
   },
