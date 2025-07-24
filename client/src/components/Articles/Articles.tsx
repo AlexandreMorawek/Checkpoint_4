@@ -91,6 +91,7 @@ function Articles() {
       <NavLink to="/add-article" className="add-article-button">
         Ajouter un article
       </NavLink>
+
       {articles.length === 0 ? (
         <p className="no-articles-message">
           Aucun article n'est disponible pour le moment.
@@ -121,6 +122,12 @@ function Articles() {
               >
                 Supprimer
               </button>
+              <NavLink
+                to={`/edit-article/${article.id}`}
+                className="edit-article-button"
+              >
+                Modifier un article
+              </NavLink>
             </div>
           ))}
         </div>

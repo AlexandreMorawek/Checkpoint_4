@@ -11,12 +11,15 @@ import articleAction from "./modules/article/articleAction";
 
 router.get("/api/articles", articleAction.browse);
 router.get("/api/article/:id", articleAction.read);
+router.put("/api/articles/:id", articleAction.edit);
 router.post("/api/articles", articleAction.add);
 router.delete("/api/articles/:id", articleAction.destroy);
 
 import categoryAction from "./modules/category/categoryAction";
 
 router.get("/api/categories", categoryAction.browse);
+router.get("/api/categories/:id", categoryAction.read);
+router.put("/api/categories/:id", categoryAction.edit);
 
 /* ************************************************************************* */
 

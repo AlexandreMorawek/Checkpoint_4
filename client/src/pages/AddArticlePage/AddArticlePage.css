@@ -104,15 +104,14 @@
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s
     ease;
-  box-shadow: 0 0 12px rgba(255, 77, 77, 0.6);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .submit-button:hover {
-  background-color: #ff6666;
-  transform: translateY(-3px);
-  box-shadow: 0 0 20px rgba(255, 77, 77, 1);
+  background-color: #4caf50;
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(76, 175, 80, 0.9);
 }
 
 @media screen and (max-width: 768px) {

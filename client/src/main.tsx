@@ -8,6 +8,7 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 // Import the main app component
 import App from "./App";
 import ArticleDetail from "./components/ArticleDetail/ArticleDetail";
+import EditArticle from "./components/EditArticle/EditArticle";
 import AddArticlePage from "./pages/AddArticlePage/AddArticlePage";
 import ArticlesPage from "./pages/ArticlesPage";
 import HomePage from "./pages/HomePage";
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/add-article",
         element: <AddArticlePage />,
+      },
+      {
+        path: "/edit-article/:id",
+        element: <EditArticle />,
       },
     ],
   },

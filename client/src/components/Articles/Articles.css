@@ -41,6 +41,33 @@
   box-shadow: 0 0 15px rgba(160, 128, 160, 0.8);
 }
 
+.edit-article-button {
+  display: block;
+  width: fit-content;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #a080a0;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s
+    ease;
+  box-shadow: 0 0 8px rgba(139, 0, 0, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  align-self: flex-end;
+  text-decoration: none;
+}
+
+.edit-article-button:hover {
+  background-color: #4caf50;
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(76, 175, 80, 0.9);
+}
+
 .no-articles-message,
 .error-message {
   text-align: center;

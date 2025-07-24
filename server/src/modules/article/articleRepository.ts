@@ -39,6 +39,14 @@ class ArticleRepository {
     );
     return result.affectedRows;
   }
+
+  async update(article: Article) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE ARTICLE SET title = ?, content = ? WHERE id = ?",
+      [article.title, article.content, article.id],
+    );
+    return result.affectedRows;
+  }
 }
 
 export default new ArticleRepository();
