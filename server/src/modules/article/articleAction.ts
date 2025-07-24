@@ -50,4 +50,24 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, destroy };
+const edit: RequestHandler = async (req, res, next) => {
+  try {
+    const article = {
+      id: Number(req.params.id),
+      title: req.body.title,
+      content: req.body.content,
+      category_id: req.body.category_id,
+    };
+
+    const affectedRows = await articleRepository.update(article);
+    if (affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browse, read, add, destroy, edit };
