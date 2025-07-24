@@ -28,6 +28,22 @@ function NavBar() {
               Articles
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/register"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              S'inscrire
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/login"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Se connecter
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </header>

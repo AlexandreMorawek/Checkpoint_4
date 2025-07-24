@@ -6,7 +6,8 @@ CREATE TABLE categories (
 CREATE TABLE user (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   username VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL
+  hashed_password VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE article (
@@ -28,9 +29,9 @@ VALUES
 (4, "Rap/Hip-Hop"),
 (5, "Pop");
 
-INSERT INTO user(id, username, password)
+INSERT INTO user(id, username, hashed_password, email)
 VALUES
-(1, "Alex", "BalooBaloo");
+(1, "Alex", "BalooBaloo", "alexandre@gmail.com");
 
 INSERT INTO article(id, title, content, user_id, categories_id)
 VALUES

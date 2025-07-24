@@ -10,6 +10,7 @@ export const rowSchema = z.object({
     .string()
     .min(1, "Le mot de passe doit contenir au moins un caractère.")
     .max(30, "Le mot de passe ne doit pas dépasser 30 caractères."),
+  email: z.email("Email invalide."),
 });
 
 export const validateUser: RequestHandler = async (req, res, next) => {
