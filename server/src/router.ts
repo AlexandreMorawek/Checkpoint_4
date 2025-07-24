@@ -22,6 +22,11 @@ router.get("/api/categories", categoryAction.browse);
 router.get("/api/categories/:id", categoryAction.read);
 router.put("/api/categories/:id", categoryAction.edit);
 
+import userAction from "./modules/user/userAction";
+
+router.get("/api/users/:id", userAction.read);
+router.post("/api/users", userAction.add);
+
 /* ************************************************************************* */
 
 export default router;
