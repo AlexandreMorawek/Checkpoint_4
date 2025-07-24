@@ -6,8 +6,9 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
-import { validateArticle } from "./Middleware/articleValidation";
 // Define item-related routes
+import { validateArticle } from "./Middleware/articleValidation";
+import { validateUser } from "./Middleware/userValidation";
 import articleAction from "./modules/article/articleAction";
 
 router.get("/api/articles", articleAction.browse);
@@ -25,7 +26,7 @@ router.put("/api/categories/:id", categoryAction.edit);
 import userAction from "./modules/user/userAction";
 
 router.get("/api/users/:id", userAction.read);
-router.post("/api/users", userAction.add);
+router.post("/api/users", validateUser, userAction.add);
 
 /* ************************************************************************* */
 
