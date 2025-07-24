@@ -10,6 +10,7 @@ const router = express.Router();
 import { validateArticle } from "./Middleware/articleValidation";
 import { validateUser } from "./Middleware/userValidation";
 import articleAction from "./modules/article/articleAction";
+import authAction from "./modules/auth/authAction";
 
 router.get("/api/articles", articleAction.browse);
 router.get("/api/article/:id", articleAction.read);
@@ -26,7 +27,15 @@ router.put("/api/categories/:id", categoryAction.edit);
 import userAction from "./modules/user/userAction";
 
 router.get("/api/users/:id", userAction.read);
-router.post("/api/users", validateUser, userAction.add);
+router.post(
+  "/api/register",
+  validateUser,
+  authAction.hashPassword,
+  userAction.add,
+);
+
+router.post("/api/login", authAction.login);
+router.post("/api/logout", authAction.logout);
 
 /* ************************************************************************* */
 

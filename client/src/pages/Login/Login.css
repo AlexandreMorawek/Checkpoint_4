@@ -1,0 +1,131 @@
+.login-page-container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 3rem auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 1rem;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.8);
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.login-page-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ffcccc;
+}
+
+.login-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: bold;
+  color: #e0e0e0;
+  font-size: 1.1rem;
+}
+
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 0.8rem 12px;
+  border: 1px solid #666;
+  border-radius: 0.6rem;
+  background-color: #a080a0;
+  color: white;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus {
+  outline: none;
+  border-color: #ff4d4d;
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.6);
+}
+
+.form-message {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.form-message.error {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.form-message.success {
+  background-color: #4caf50;
+  color: white;
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
+  padding: 1.2rem;
+  margin-top: 2rem;
+  background-color: #a080a0;
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s
+    ease; /* Transitions douces */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.submit-button:hover {
+  background-color: #4caf50;
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(76, 175, 80, 0.9);
+}
+
+.error-text {
+  color: #ff4d4d;
+  font-size: 0.9em;
+  margin-top: 0.5em;
+}
+
+@media screen and (max-width: 768px) {
+  .login-page-container {
+    padding: 1.5rem;
+    margin: 1rem auto;
+  }
+
+  .login-page-title {
+    font-size: 2rem;
+  }
+
+  .login-form label {
+    font-size: 1rem;
+  }
+
+  .login-form input {
+    font-size: 0.9rem;
+    padding: 0.6rem 10px;
+  }
+
+  .submit-button {
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .login-page-container {
+    padding: 1rem;
+  }
+}

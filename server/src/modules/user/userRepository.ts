@@ -4,7 +4,8 @@ import type { Result, Rows } from "../../../database/client";
 type User = {
   id: number;
   username: string;
-  password: string;
+  hashed_password: string;
+  email: string;
 };
 
 class UserRepository {
@@ -17,10 +18,18 @@ class UserRepository {
     return user ?? null;
   }
 
+  async findByEmail(email: string): Promise<User | null> {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM user WHERE email = ?",
+      [email],
+    );
+    return (rows[0] as User) ?? null;
+  }
+
   async create(user: Omit<User, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO user (username, password) VALUES (?, ?)",
-      [user.username, user.password],
+      "INSERT INTO user (username, hashed_password, email) VALUES (?, ?, ?)",
+      [user.username, user.hashed_password, user.email],
     );
     return result.insertId;
   }
