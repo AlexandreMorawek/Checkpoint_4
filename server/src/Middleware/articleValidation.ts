@@ -8,7 +8,7 @@ export const rowSchema = z.object({
   content: z.string({
     message: "Le contenu de l'article doit être renseigné.",
   }),
-  category_id: z.number({
+  categories_id: z.number({
     message: "La catégorie de l'article doit être renseigné.",
   }),
 });

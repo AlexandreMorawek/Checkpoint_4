@@ -7,7 +7,7 @@ import "./AddArticlePage.css";
 type ArticleFormData = {
   title: string;
   content: string;
-  category_id: number;
+  categories_id: number;
 };
 
 type Category = {
@@ -62,7 +62,7 @@ const AddArticlePage: React.FC = () => {
     const newArticle = {
       title: data.title,
       content: data.content,
-      category_id: data.category_id,
+      categories_id: data.categories_id,
     };
 
     try {
@@ -130,7 +130,7 @@ const AddArticlePage: React.FC = () => {
           ) : (
             <select
               id="category_id"
-              {...register("category_id", {
+              {...register("categories_id", {
                 required: "Veuillez sélectionner une catégorie.",
                 valueAsNumber: true,
                 min: {
@@ -147,8 +147,8 @@ const AddArticlePage: React.FC = () => {
               ))}
             </select>
           )}
-          {errors.category_id && (
-            <p className="error-text">{errors.category_id.message}</p>
+          {errors.categories_id && (
+            <p className="error-text">{errors.categories_id.message}</p>
           )}
         </div>
         {message && (
