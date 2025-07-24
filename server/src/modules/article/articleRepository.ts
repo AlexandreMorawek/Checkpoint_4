@@ -6,18 +6,21 @@ type Article = {
   id: number;
   title: string;
   content: string;
-  category_id: number;
+  categories_id: number;
+  user_id: number;
 };
 
 class ArticleRepository {
   async readAll(articleId?: number) {
-    const [rows] = await databaseClient.query<Rows>("select * from article");
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM article INNER JOIN categories ON article.categories_id = categories.id",
+    );
     return rows as Article[];
   }
 
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM article WHERE id = ?",
+      "SELECT * FROM article INNER JOIN categories ON article.categories_id = categories.id WHERE article.id = ?",
       [id],
     );
     return rows[0] as Article;
@@ -25,8 +28,8 @@ class ArticleRepository {
 
   async create(article: Omit<Article, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO article (title, content, category_id) VALUES (?, ?, ?)",
-      [article.title, article.content, article.category_id],
+      "INSERT INTO article (title, content, categories_id, user_id) VALUES (?, ?, ?, ?)",
+      [article.title, article.content, article.categories_id, article.user_id],
     );
 
     return result.insertId;

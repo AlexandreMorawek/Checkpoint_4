@@ -22,12 +22,13 @@ const read: RequestHandler = async (req, res) => {
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    const { title, content, category_id } = req.body;
+    const { title, content, categories_id } = req.body;
 
     const newArticle = {
       title,
       content,
-      category_id,
+      categories_id,
+      user_id: 1,
     };
 
     const insertId = await articleRepository.create(newArticle);
@@ -56,7 +57,8 @@ const edit: RequestHandler = async (req, res, next) => {
       id: Number(req.params.id),
       title: req.body.title,
       content: req.body.content,
-      category_id: req.body.category_id,
+      categories_id: req.body.categories_id,
+      user_id: 1,
     };
 
     const affectedRows = await articleRepository.update(article);
