@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../Context/AuthContext";
 import "./Login.css";
 
 type LoginFormData = {
@@ -18,6 +19,7 @@ const LoginPage: React.FC = () => {
   } = useForm<LoginFormData>();
 
   const navigate = useNavigate();
+  const { login: authLogin } = useAuth();
 
   const [message, setMessage] = useState<string | null>(null);
   const [isError, setIsError] = useState<boolean>(false);
@@ -27,35 +29,20 @@ const LoginPage: React.FC = () => {
     setIsError(false);
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: data.email,
-            password: data.password,
-          }),
-        },
-      );
+      const success = await authLogin(data.email, data.password);
 
-      if (!response.ok) {
-        const errorData = await response
-          .json()
-          .catch(() => ({ message: response.statusText }));
-        throw new Error(errorData.message || `Erreur HTTP: ${response.status}`);
+      if (success) {
+        setMessage("Connexion réussie !");
+        setIsError(false);
+        reset();
+
+        setTimeout(() => {
+          navigate("/articles");
+        }, 1500);
+      } else {
+        setMessage("Email ou mot de passe incorrect.");
+        setIsError(true);
       }
-
-      const result = await response.json();
-      setMessage(result.message || "Connexion réussie !");
-      setIsError(false);
-      reset();
-
-      setTimeout(() => {
-        navigate("/articles");
-      }, 3000);
     } catch (err) {
       console.error("Erreur lors de la connexion:", err);
       const errorMessage = `Erreur: ${(err as Error).message || "Impossible de se connecter."}`;
@@ -109,6 +96,12 @@ const LoginPage: React.FC = () => {
           Se connecter
         </button>
       </form>
+      <p className="register-link-paragraph">
+        Vous n'avez pas encore de compte ?{" "}
+        <NavLink to="/register" className="register-link">
+          Inscrivez-vous !
+        </NavLink>
+      </p>
     </div>
   );
 };

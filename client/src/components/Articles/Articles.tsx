@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 import "./Articles.css";
 
 type Article = {
@@ -47,6 +47,7 @@ function Articles() {
           `${import.meta.env.VITE_API_URL}/api/articles/${articleId}`,
           {
             method: "DELETE",
+            credentials: "include",
           },
         );
 

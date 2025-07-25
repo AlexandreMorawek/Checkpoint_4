@@ -8,15 +8,26 @@ const router = express.Router();
 
 // Define item-related routes
 import { validateArticle } from "./Middleware/articleValidation";
+import authMiddleware from "./Middleware/authMiddleware";
+import connectedMiddleware from "./Middleware/connectedMiddleware";
 import { validateUser } from "./Middleware/userValidation";
 import articleAction from "./modules/article/articleAction";
 import authAction from "./modules/auth/authAction";
 
 router.get("/api/articles", articleAction.browse);
-router.get("/api/article/:id", articleAction.read);
-router.put("/api/articles/:id", articleAction.edit);
-router.post("/api/articles", validateArticle, articleAction.add);
-router.delete("/api/articles/:id", articleAction.destroy);
+router.get("/api/articles/:id", articleAction.read);
+router.put("/api/articles/:id", authMiddleware.verifyToken, articleAction.edit);
+router.post(
+  "/api/articles",
+  authMiddleware.verifyToken,
+  validateArticle,
+  articleAction.add,
+);
+router.delete(
+  "/api/articles/:id",
+  authMiddleware.verifyToken,
+  articleAction.destroy,
+);
 
 import categoryAction from "./modules/category/categoryAction";
 
@@ -35,6 +46,11 @@ router.post(
 );
 
 router.post("/api/login", authAction.login);
+router.get(
+  "/api/me",
+  authMiddleware.verifyToken,
+  connectedMiddleware.connected,
+);
 router.post("/api/logout", authAction.logout);
 
 /* ************************************************************************* */

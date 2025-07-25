@@ -23,12 +23,18 @@ const read: RequestHandler = async (req, res) => {
 const add: RequestHandler = async (req, res, next) => {
   try {
     const { title, content, categories_id } = req.body;
+    const userIdFromToken = req.auth?.sub;
+
+    if (!userIdFromToken) {
+      res.status(401).json({ message: "Utilisateur non authentifié." });
+      return;
+    }
 
     const newArticle = {
       title,
       content,
       categories_id,
-      user_id: 1,
+      user_id: Number.parseInt(userIdFromToken, 10),
     };
 
     const insertId = await articleRepository.create(newArticle);
@@ -42,6 +48,12 @@ const add: RequestHandler = async (req, res, next) => {
 const destroy: RequestHandler = async (req, res, next) => {
   try {
     const articleId = Number(req.params.id);
+    const userIdFromToken = req.auth?.sub;
+
+    if (!userIdFromToken) {
+      res.status(401).json({ message: "Utilisateur non authentifié." });
+      return;
+    }
 
     await articleRepository.delete(articleId);
 
@@ -53,12 +65,18 @@ const destroy: RequestHandler = async (req, res, next) => {
 
 const edit: RequestHandler = async (req, res, next) => {
   try {
+    const userIdFromToken = req.auth?.sub;
+    if (!userIdFromToken) {
+      res.status(401).json({ message: "Utilisateur non authentifié." });
+      return;
+    }
+
     const article = {
       id: Number(req.params.id),
       title: req.body.title,
       content: req.body.content,
       categories_id: req.body.categories_id,
-      user_id: 1,
+      user_id: Number.parseInt(userIdFromToken),
     };
 
     const affectedRows = await articleRepository.update(article);

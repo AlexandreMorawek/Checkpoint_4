@@ -2,13 +2,14 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
-
+import { AuthProvider } from "./Context/AuthContext";
 /* ************************************************************************* */
 
 // Import the main app component
 import App from "./App";
-import ArticleDetail from "./components/ArticleDetail/ArticleDetail";
+import ArticleDetailsWrapper from "./components/ArticleDetail/ArticleDetailWrapper";
 import EditArticle from "./components/EditArticle/EditArticle";
+import ProtectedRoute from "./components/ProtectedRoute";
 import AddArticlePage from "./pages/AddArticlePage/AddArticlePage";
 import ArticlesPage from "./pages/ArticlesPage";
 import HomePage from "./pages/HomePage";
@@ -35,20 +36,25 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/articles",
-        element: <ArticlesPage />,
-      },
-      {
-        path: "/articles/:id",
-        element: <ArticleDetail />,
-      },
-      {
-        path: "/add-article",
-        element: <AddArticlePage />,
-      },
-      {
-        path: "/edit-article/:id",
-        element: <EditArticle />,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/articles",
+            element: <ArticlesPage />,
+          },
+          {
+            path: "/articles/:id",
+            element: <ArticleDetailsWrapper />,
+          },
+          {
+            path: "/add-article",
+            element: <AddArticlePage />,
+          },
+          {
+            path: "/edit-article/:id",
+            element: <EditArticle />,
+          },
+        ],
       },
       {
         path: "/register",
@@ -77,7 +83,9 @@ if (rootElement == null) {
 // Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 );
 

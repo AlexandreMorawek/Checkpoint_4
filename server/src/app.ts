@@ -1,5 +1,5 @@
 // Load the express module to create a web application
-
+import "./types/express/index.d.ts";
 import cookieParser from "cookie-parser";
 import express from "express";
 const app = express();
