@@ -13,7 +13,7 @@ type Article = {
 class ArticleRepository {
   async readAll(articleId?: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM article INNER JOIN categories ON article.categories_id = categories.id",
+      "SELECT a.*, c.name FROM article as a INNER JOIN categories as c ON a.categories_id = c.id",
     );
     return rows as Article[];
   }
@@ -45,8 +45,8 @@ class ArticleRepository {
 
   async update(article: Article) {
     const [result] = await databaseClient.query<Result>(
-      "UPDATE ARTICLE SET title = ?, content = ? WHERE id = ?",
-      [article.title, article.content, article.id],
+      "UPDATE article SET title = ?, content = ?, categories_id = ? WHERE id = ?",
+      [article.title, article.content, article.categories_id, article.id],
     );
     return result.affectedRows;
   }

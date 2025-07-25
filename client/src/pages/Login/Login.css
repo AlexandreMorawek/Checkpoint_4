@@ -82,7 +82,7 @@
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s
-    ease; /* Transitions douces */
+    ease;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -97,6 +97,25 @@
   color: #ff4d4d;
   font-size: 0.9em;
   margin-top: 0.5em;
+}
+
+.register-link-paragraph {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  color: #e0e0e0;
+}
+
+.register-link {
+  color: #a080a0;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.register-link:hover {
+  color: #ffcccc;
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 768px) {

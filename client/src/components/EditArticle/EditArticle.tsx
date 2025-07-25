@@ -29,7 +29,7 @@ function EditArticle() {
     const fetchArticle = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/article/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/articles/${id}`,
         );
         if (!response.ok)
           throw new Error("Erreur lors du chargement de l'article.");
@@ -85,6 +85,7 @@ function EditArticle() {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(article),
+          credentials: "include",
         },
       );
       if (!response.ok) throw new Error("Échec de la mise à jour.");

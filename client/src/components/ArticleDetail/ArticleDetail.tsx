@@ -18,9 +18,11 @@ function ArticleDetails() {
 
   useEffect(() => {
     const fetchArticle = async () => {
+      setArticle(null);
+      setLoading(true);
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/article/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/articles/${id}`,
         );
         if (!response.ok) throw new Error("Article introuvable");
         const data = await response.json();

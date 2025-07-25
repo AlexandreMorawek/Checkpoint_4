@@ -74,6 +74,7 @@ const AddArticlePage: React.FC = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(newArticle),
+          credentials: "include",
         },
       );
 

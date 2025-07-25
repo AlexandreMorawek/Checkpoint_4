@@ -15,6 +15,13 @@ export const rowSchema = z.object({
 
 export const validateArticle: RequestHandler = async (req, res, next) => {
   try {
+    const userIdFromToken = req.auth?.sub;
+
+    if (!userIdFromToken) {
+      res.status(401).json({ message: "Utilisateur non authentifié " });
+      return;
+    }
+
     await rowSchema.parseAsync(req.body);
     next();
   } catch (err) {
